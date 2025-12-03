@@ -93,6 +93,9 @@ def pixel_to_data(
     Returns:
         (data_x, data_y) tuple
     """
+    def round_to_half(x):
+        return round(x * 2) / 2
+
     # Calculate data x coordinate
     data_x = axis_config.x_min + \
              (pixel_x - axis_config.pixel_x_min) / \
@@ -104,6 +107,9 @@ def pixel_to_data(
              (pixel_y - axis_config.pixel_y_min) / \
              (axis_config.pixel_y_max - axis_config.pixel_y_min) * \
              (axis_config.y_max - axis_config.y_min)
+
+    data_x = round_to_half(data_x)
+    data_y = round_to_half(data_y)
 
     return (data_x, data_y)
 
